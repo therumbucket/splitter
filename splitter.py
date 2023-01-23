@@ -28,7 +28,7 @@ def split_csv(filepath, parts):
         # Iterate over the parts
         for i in range(parts):
             # Open a new file for the current part
-            filename = os.path.join(os.path.dirname(filepath), f'part-{str(i + 1).zfill(4)}.csv')
+            filename = os.path.join(os.path.dirname(filepath), f'part_{str(i + 1).zfill(4)}-{os.path.basename(filepath)}')
             with open(filename, 'w') as part_file:
                 part_writer = csv.writer(part_file)
                 # Write the column names to the new file
@@ -47,6 +47,7 @@ def split_csv(filepath, parts):
                 print(f'Processing part {i+1}')
     print('Splitting complete!')
     print(f'The parts reside in the directory: {os.path.dirname(filepath)}')
+
 if __name__ == '__main__':
     filepath = sys.argv[1]
     parts = int(sys.argv[2])
